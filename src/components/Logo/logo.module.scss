@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.text {
+  padding-left: 0.3rem;
+  display: none;
+}
+
+@media (min-width: 500px) {
+  .text {
+    display: inline;
+  }
+}
