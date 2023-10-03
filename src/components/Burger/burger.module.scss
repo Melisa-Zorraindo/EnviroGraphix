@@ -1,6 +1,8 @@
+@import "../../theme.scss";
+
 .hamburger {
   position: absolute;
-  top: 0.5rem;
+  top: 0.75rem;
   right: 1rem;
   display: flex;
   flex-direction: column;
@@ -20,10 +22,10 @@
 
 .bars {
   width: 1.5rem;
-  height: 0.25rem;
-  background: #000;
-  border-radius: 10px;
-  transition: all 0.3s linear;
+  height: 0.15rem;
+  background: $dark;
+  border-radius: $border-radius-base;
+  transition: all $transition-time-property;
   position: relative;
   transform-origin: 1px;
 }

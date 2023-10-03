@@ -1,27 +1,33 @@
+@import "../../theme.scss";
+
 .container {
   list-style-type: none;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background: grey;
+  background: $light;
   height: 100vh;
   width: 300px;
   text-align: left;
-  padding: 1rem;
+  padding: $header-height 0;
   position: absolute;
   top: -1rem;
   right: 0;
-  transition: transform 0.3s ease-in-out;
+  transition: transform $transition-time-property;
 
   .navItem {
-    padding: 2rem 0 1rem;
-    transition: color 0.3s linear;
+    margin: 0.25rem 0;
 
     .link {
-      color: #fff;
+      transition: all $transition-time-property;
+      text-transform: uppercase;
+      letter-spacing: $letter-spacing-base;
+      padding: 0.75rem 0.5rem;
+      display: block;
+      color: $dark;
 
       &:hover {
-        color: yellow;
+        background-color: $primary-fade;
       }
     }
   }
@@ -37,7 +43,7 @@
 
 @media (max-width: 550px) {
   .container {
-    width: 100%;
+    width: 75%;
   }
 }
 
@@ -45,18 +51,20 @@
   .container {
     flex-direction: row;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
     gap: 1rem;
     transform: translateX(0);
     background-color: transparent;
     padding: 0 1rem;
-    height: 2rem;
+    height: $header-height;
+    width: fit-content;
 
     .navItem {
       padding: 0;
 
       .link {
-        color: #000;
+        padding-left: 1rem;
+        padding-right: 1rem;
       }
     }
   }
