@@ -1,0 +1,10 @@
+@import "../../theme.scss";
+
+.primaryButton {
+  background-color: $primary;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  height: 2rem;
+  border: none;
+  color: $light;
+}
