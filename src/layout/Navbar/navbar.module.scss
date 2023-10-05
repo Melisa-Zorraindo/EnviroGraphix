@@ -54,7 +54,7 @@
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
     transform: translateX(0);
     background-color: transparent;
     padding: 0 1rem;
@@ -67,6 +67,25 @@
       .link {
         padding-left: 1rem;
         padding-right: 1rem;
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          height: 2px;
+          width: 0px;
+          transition: all $transition-time-property;
+        }
+
+        &:hover {
+          background-color: transparent;
+        }
+
+        &:hover::after {
+          width: 90%;
+          background-color: $primary-hover;
+        }
       }
     }
   }
