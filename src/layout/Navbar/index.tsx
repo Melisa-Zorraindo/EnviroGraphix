@@ -1,6 +1,5 @@
 import styles from "./navbar.module.scss";
 import * as Icons from "../../components/Icons";
-import Button from "../../components/Button";
 import buttonStyles from "../../components/Button/index.module.scss";
 import useWindowWidth from "../../hooks/useWindowWidth";
 
@@ -32,19 +31,17 @@ export default function Navbar({ open }: NavbarProps): JSX.Element {
           </a>
         </li>
         <li className={styles.navItem}>
-          {width >= 800 ? (
-            <Button
-              type="button"
-              icon={<Signup />}
-              customStyles={buttonStyles.primaryButton}
-              text="Sign up"
-            />
-          ) : (
-            <a href="/registration" className={styles.link}>
-              <Signup />
-              Sign up
-            </a>
-          )}
+          <a
+            href="/registration"
+            className={`${
+              width >= 800
+                ? `${buttonStyles.primaryButton} ${buttonStyles.buttonLink}`
+                : styles.link
+            }`}
+          >
+            <Signup />
+            SIGN UP
+          </a>
         </li>
       </ul>
     </nav>
