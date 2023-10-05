@@ -1,0 +1,28 @@
+@import "../../theme.scss";
+
+.primaryButton {
+  background-color: $primary;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  height: 2rem;
+  border: none;
+  color: $light;
+  cursor: pointer;
+  transition: all $transition-time-property;
+
+  //when buttons have icons
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  fill: $light;
+
+  &:hover {
+    background-color: $primary-hover;
+  }
+}
+
+.buttonLink {
+  padding: 0 1rem;
+  font-weight: $regular;
+}
