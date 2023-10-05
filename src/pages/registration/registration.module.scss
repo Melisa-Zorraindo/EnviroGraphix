@@ -1,0 +1,158 @@
+@import "../../theme.scss";
+
+.main {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.formContainer {
+  background-color: $light;
+  padding: 1rem;
+  height: fit-content;
+}
+
+.heading {
+  color: $primary;
+  margin-bottom: 1rem;
+}
+
+.subHeading {
+  margin-bottom: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  .inputGroupBox {
+    label {
+      display: none;
+    }
+  }
+
+  .inputGroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid $neutral-accent;
+    flex: 0 0 100%;
+    padding: 0.25rem 0;
+    background-color: $light;
+
+    &:target {
+      border: none;
+    }
+
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-left: 0.5rem;
+      fill: $neutral-accent;
+    }
+
+    .input {
+      height: 2rem;
+      padding-left: 0.5rem;
+      border: none;
+      font-family: $font-family-base;
+      text-wrap: wrap;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .errorMessage {
+    margin-top: 0;
+    color: $danger;
+    font-size: $font-size-s;
+  }
+
+  .requirements {
+    font-size: $font-size-s;
+    margin-bottom: 0;
+  }
+
+  .requirements ~ ul {
+    list-style-type: none;
+    padding-left: 10px;
+    font-weight: $semi-bold;
+  }
+
+  .requirementsNotFilled {
+    font-size: $font-size-s;
+    list-style-type: "\2717";
+    color: $danger;
+  }
+
+  .requirementsFilled {
+    font-size: $font-size-s;
+    color: $success;
+    list-style-type: "\2713";
+  }
+
+  .requirementsText {
+    color: $dark;
+    padding-left: 0.5rem;
+    font-weight: $regular;
+  }
+}
+
+@media (min-width: 385px) {
+  .formContainer {
+    margin: 0 1rem;
+  }
+
+  .icon {
+    flex: 0 0 10%;
+  }
+
+  .input {
+    flex: 0 0 90%;
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 550px) {
+  .container {
+    margin: 2rem auto;
+  }
+
+  .formContainer {
+    padding: 3rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .main {
+    align-items: center;
+  }
+
+  .container {
+    align-items: center;
+    background-color: $secondary;
+    margin: 0 3rem;
+  }
+
+  .backgroundImage {
+    flex: 0 0 50%;
+
+    .img {
+      padding: 3rem;
+      width: 100%;
+    }
+  }
+
+  .formContainer {
+    margin: 0;
+  }
+}

@@ -3,19 +3,23 @@ $header-height: 3rem;
 $border-radius-base: 6px;
 
 /* =~= Fonts =~= */
-@import url("https://fonts.googleapis.com/css2?family=Onest:wght@200;400;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Onest:wght@200;400;600;800&display=swap");
 $font-family-base: "Onest", sans-serif;
+$font-size-m: 20px;
 $font-size-base: 18px;
+$font-size-s: 14px;
 $letter-spacing-base: 1px;
+$regular: 400;
+$semi-bold: 600;
 
 /* =~= Colours =~= */
-/* primary | #4ABEB2 */
-$primary: #4abeb2;
-$primary-accent: #10efd9;
-$primary-fade: rgba(74, 190, 178, 0.5);
+/* primary | #0B8A0B */
+$primary: #0b8a0b;
+$primary-accent: #27d627;
+$primary-fade: rgba(11, 138, 11, 0.5);
 /* secondary | #652CBB */
 $secondary: #652cbb;
-$secondary-accent: #620cf2;
+$secondary-accent: #9a57ff;
 $secondary-fade: rgba(101, 44, 187, 0.5);
 /* base | #E6E6E6 */
 $light: #fff;
@@ -24,11 +28,11 @@ $dark: #000;
 $neutral: #e6e6e6;
 $neutral-accent: #c7c7c7;
 /* success | #84CC16 */
-$success: #84cc16;
+$success: #69aa08;
 /* warning | #DBEA08 */
 $warning: #dbea08;
 /* error | #C70C25 */
-$error: #c70c25;
+$danger: #db0723;
 
 /* =~= Transitions =~= */
 $transition-time-property: 0.3s ease-in-out;

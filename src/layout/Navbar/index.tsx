@@ -27,7 +27,7 @@ export default function Navbar({ open }: NavbarProps): JSX.Element {
           </a>
         </li>
         <li className={styles.navItem}>
-          <a href="/" className={styles.link}>
+          <a href="/registration" className={styles.link}>
             <Signup />
             Sign up
           </a>

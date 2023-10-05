@@ -9,6 +9,11 @@ body {
   background-color: $neutral;
 }
 
+a {
+  color: $primary;
+  font-weight: $semi-bold;
+}
+
 *,
 *::after,
 *::before {
