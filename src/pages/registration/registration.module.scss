@@ -107,6 +107,15 @@
   }
 }
 
+.buttonContainer {
+  display: flex;
+
+  button {
+    justify-content: center;
+    flex: 0 0 100%;
+  }
+}
+
 @media (min-width: 385px) {
   .formContainer {
     margin: 0 1rem;

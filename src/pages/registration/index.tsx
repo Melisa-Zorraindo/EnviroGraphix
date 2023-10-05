@@ -225,11 +225,13 @@ export default function Registration(): JSX.Element {
             <p className={styles.errorMessage}>
               {errors.repeatPassword?.message}
             </p>
-            <Button
-              type="submit"
-              customStyles={buttonStyles.primaryButton}
-              text="Sign up"
-            />
+            <div className={styles.buttonContainer}>
+              <Button
+                type="submit"
+                customStyles={buttonStyles.primaryButton}
+                text="Sign up"
+              />
+            </div>
           </form>
         </div>
       </div>
