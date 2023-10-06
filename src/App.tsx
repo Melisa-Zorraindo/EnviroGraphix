@@ -7,8 +7,9 @@ function App() {
   return (
     <div className={styles.global}>
       <Routes>
-        <Route path="/" element={<Layout />}></Route>
-        <Route path="/registration" element={<Registration />}></Route>
+        <Route path="/" element={<Layout />}>
+          <Route path="/registration" element={<Registration />}></Route>
+        </Route>
       </Routes>
     </div>
   );
