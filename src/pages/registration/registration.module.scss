@@ -41,7 +41,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid $neutral-accent;
     flex: 0 0 100%;
     padding: 0.25rem 0;
     background-color: $light;
@@ -71,6 +70,13 @@
     }
   }
 
+  .isOnFocus {
+    border: 1px solid $primary;
+  }
+
+  .isNotOnFocus {
+    border: 1px solid $neutral-accent;
+  }
   .errorMessage {
     margin-top: 0;
     color: $danger;
