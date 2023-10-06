@@ -56,6 +56,12 @@ export default function Registration(): JSX.Element {
     digit: false,
     specialCharacter: false,
   });
+  const [isOnFocus, setIsOnFocus] = useState<{ [key: string]: boolean }>({
+    company: false,
+    email: false,
+    password: false,
+    repeatPassword: false,
+  });
 
   useEffect(() => {
     document.title = "EnviroGraphix · Sign up";
@@ -81,6 +87,12 @@ export default function Registration(): JSX.Element {
     });
   }
 
+  function addBorder(field: string) {
+    setIsOnFocus((prevState) => ({
+      [field]: !prevState[field],
+    }));
+  }
+
   return (
     <main className={styles.main}>
       <div className={styles.container}>
@@ -95,7 +107,11 @@ export default function Registration(): JSX.Element {
             Do you already have an account? <a href="/">Login here</a>
           </p>
           <form onSubmit={handleSubmit(onFormSubmit)} className={styles.form}>
-            <div className={styles.inputGroupBox}>
+            <div
+              className={`${styles.inputGroupBox} ${
+                isOnFocus["company"] ? styles.isOnFocus : styles.isNotOnFocus
+              }`}
+            >
               <label htmlFor="company">Company</label>
               <div className={styles.inputGroup}>
                 {width >= 385 && (
@@ -108,11 +124,16 @@ export default function Registration(): JSX.Element {
                   {...register("company")}
                   className={styles.input}
                   placeholder="Enter your company name"
+                  onFocus={() => addBorder("company")}
                 />
               </div>
             </div>
             <p className={styles.errorMessage}>{errors.company?.message}</p>
-            <div className={styles.inputGroupBox}>
+            <div
+              className={`${styles.inputGroupBox} ${
+                isOnFocus["email"] ? styles.isOnFocus : styles.isNotOnFocus
+              }`}
+            >
               <label htmlFor="email">Email</label>
               <div className={styles.inputGroup}>
                 {width >= 385 && (
@@ -124,11 +145,16 @@ export default function Registration(): JSX.Element {
                   {...register("email")}
                   className={styles.input}
                   placeholder="Enter your email"
+                  onFocus={() => addBorder("email")}
                 />
               </div>
             </div>
             <p className={styles.errorMessage}>{errors.email?.message}</p>
-            <div className={styles.inputGroupBox}>
+            <div
+              className={`${styles.inputGroupBox} ${
+                isOnFocus["password"] ? styles.isOnFocus : styles.isNotOnFocus
+              }`}
+            >
               <label htmlFor="password">Password</label>
               <div className={styles.inputGroup}>
                 {width >= 385 && (
@@ -145,6 +171,7 @@ export default function Registration(): JSX.Element {
                     setPassword(e.currentTarget.value);
                     checkPasswordRequirements(e.currentTarget.value);
                   }}
+                  onFocus={() => addBorder("password")}
                 />
               </div>
             </div>
@@ -206,7 +233,13 @@ export default function Registration(): JSX.Element {
                 </span>
               </li>
             </ul>
-            <div className={styles.inputGroupBox}>
+            <div
+              className={`${styles.inputGroupBox} ${
+                isOnFocus["repeatPassword"]
+                  ? styles.isOnFocus
+                  : styles.isNotOnFocus
+              }`}
+            >
               <label htmlFor="repeatPassword">Repeat password</label>
               <div className={styles.inputGroup}>
                 {width >= 385 && (
@@ -219,6 +252,7 @@ export default function Registration(): JSX.Element {
                   type="password"
                   className={styles.input}
                   placeholder="Repeat your password"
+                  onFocus={() => addBorder("repeatPassword")}
                 />
               </div>
             </div>
