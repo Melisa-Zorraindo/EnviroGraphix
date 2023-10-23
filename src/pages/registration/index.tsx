@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import useWindowDimensions from "../../hooks/useWindowWidth";
+import useWindowWidth from "../../hooks/useWindowWidth";
 import backgroundImg from "../../assets/undraw_mobile_content_xvgr.svg";
 import styles from "./registration.module.scss";
 import * as Icon from "../../components/Icons/index";
 import Button from "../../components/Button";
-import buttonStyles from "../../components/Button/index.module.scss";
+import buttonStyles from "../../components/Button/button.module.scss";
+import { colourBorder } from "../../utils/colourBorder";
+import { narrowScreen, wideScreen } from "../../utils/constants/screenWidth";
 
 interface userData {
   company: string;
@@ -42,7 +44,7 @@ const schema = yup
 
 export default function Registration(): JSX.Element {
   const { Company, Email, Password } = Icon;
-  const { width } = useWindowDimensions();
+  const { width } = useWindowWidth();
   const {
     register,
     handleSubmit,
@@ -87,16 +89,10 @@ export default function Registration(): JSX.Element {
     });
   }
 
-  function addBorder(field: string) {
-    setIsOnFocus((prevState) => ({
-      [field]: !prevState[field],
-    }));
-  }
-
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        {width >= 1100 && (
+        {width >= wideScreen && (
           <div className={styles.backgroundImage}>
             <img src={backgroundImg} alt="" className={styles.img} />
           </div>
@@ -104,7 +100,7 @@ export default function Registration(): JSX.Element {
         <div className={styles.formContainer}>
           <h1 className={styles.heading}>Company Signup</h1>
           <p className={styles.subHeading}>
-            Do you already have an account? <a href="/">Login here</a>
+            Do you already have an account? <a href="/login">Login here</a>
           </p>
           <form onSubmit={handleSubmit(onFormSubmit)} className={styles.form}>
             <div
@@ -114,7 +110,7 @@ export default function Registration(): JSX.Element {
             >
               <label htmlFor="company">Company</label>
               <div className={styles.inputGroup}>
-                {width >= 385 && (
+                {width >= narrowScreen && (
                   <div className={styles.icon}>
                     <Company />
                   </div>
@@ -124,7 +120,7 @@ export default function Registration(): JSX.Element {
                   {...register("company")}
                   className={styles.input}
                   placeholder="Enter your company name"
-                  onFocus={() => addBorder("company")}
+                  onFocus={() => colourBorder("company", setIsOnFocus)}
                 />
               </div>
             </div>
@@ -136,7 +132,7 @@ export default function Registration(): JSX.Element {
             >
               <label htmlFor="email">Email</label>
               <div className={styles.inputGroup}>
-                {width >= 385 && (
+                {width >= narrowScreen && (
                   <div className={styles.icon}>
                     <Email />
                   </div>
@@ -145,7 +141,7 @@ export default function Registration(): JSX.Element {
                   {...register("email")}
                   className={styles.input}
                   placeholder="Enter your email"
-                  onFocus={() => addBorder("email")}
+                  onFocus={() => colourBorder("email", setIsOnFocus)}
                 />
               </div>
             </div>
@@ -157,7 +153,7 @@ export default function Registration(): JSX.Element {
             >
               <label htmlFor="password">Password</label>
               <div className={styles.inputGroup}>
-                {width >= 385 && (
+                {width >= narrowScreen && (
                   <div className={styles.icon}>
                     <Password />
                   </div>
@@ -171,7 +167,7 @@ export default function Registration(): JSX.Element {
                     setPassword(e.currentTarget.value);
                     checkPasswordRequirements(e.currentTarget.value);
                   }}
-                  onFocus={() => addBorder("password")}
+                  onFocus={() => colourBorder("password", setIsOnFocus)}
                 />
               </div>
             </div>
@@ -242,7 +238,7 @@ export default function Registration(): JSX.Element {
             >
               <label htmlFor="repeatPassword">Repeat password</label>
               <div className={styles.inputGroup}>
-                {width >= 385 && (
+                {width >= narrowScreen && (
                   <div className={styles.icon}>
                     <Password />
                   </div>
@@ -252,7 +248,7 @@ export default function Registration(): JSX.Element {
                   type="password"
                   className={styles.input}
                   placeholder="Repeat your password"
-                  onFocus={() => addBorder("repeatPassword")}
+                  onFocus={() => colourBorder("repeatPassword", setIsOnFocus)}
                 />
               </div>
             </div>

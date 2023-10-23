@@ -83,35 +83,6 @@
     color: $danger;
     font-size: $font-size-s;
   }
-
-  .requirements {
-    font-size: $font-size-s;
-    margin-bottom: 0;
-  }
-
-  .requirements ~ ul {
-    list-style-type: none;
-    padding-left: 10px;
-    font-weight: $semi-bold;
-  }
-
-  .requirementsNotFilled {
-    font-size: $font-size-s;
-    list-style-type: "\2717";
-    color: $danger;
-  }
-
-  .requirementsFilled {
-    font-size: $font-size-s;
-    color: $success;
-    list-style-type: "\2713";
-  }
-
-  .requirementsText {
-    color: $dark;
-    padding-left: 0.5rem;
-    font-weight: $regular;
-  }
 }
 
 .buttonContainer {
@@ -129,11 +100,11 @@
   }
 
   .icon {
-    flex: 0 0 10%;
+    flex: 0 0 11%;
   }
 
   .input {
-    flex: 0 0 90%;
+    flex: 0 0 89%;
     padding-left: 0;
   }
 }
@@ -144,7 +115,7 @@
   }
 
   .formContainer {
-    padding: 3rem;
+    padding: 6rem 3rem;
   }
 }
 
@@ -161,10 +132,11 @@
 
   .backgroundImage {
     flex: 0 0 50%;
+    text-align: center;
 
     .img {
-      padding: 3rem;
-      width: 100%;
+      padding: 3rem 0;
+      width: 65%;
     }
   }
 
