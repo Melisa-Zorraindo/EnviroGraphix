@@ -18,7 +18,7 @@ export default function Header(): JSX.Element {
       <NavLink to="/">
         <Logo />
       </NavLink>
-      {!pathname.includes("registration") && (
+      {!pathname.includes("registration") && !pathname.includes("login") && (
         <div ref={node}>
           <Burger open={isOpen} setOpen={setIsOpen} />
           <Navbar open={isOpen} />

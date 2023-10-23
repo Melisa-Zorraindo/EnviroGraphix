@@ -1,6 +1,6 @@
 import styles from "./navbar.module.scss";
 import * as Icons from "../../components/Icons";
-import buttonStyles from "../../components/Button/index.module.scss";
+import buttonStyles from "../../components/Button/button.module.scss";
 import useWindowWidth from "../../hooks/useWindowWidth";
 
 interface NavbarProps {
@@ -25,7 +25,7 @@ export default function Navbar({ open }: NavbarProps): JSX.Element {
           </a>
         </li>
         <li className={styles.navItem}>
-          <a href="/" className={styles.link}>
+          <a href="/login" className={styles.link}>
             <Login />
             Log in
           </a>
