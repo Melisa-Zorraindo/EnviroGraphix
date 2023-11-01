@@ -70,7 +70,25 @@ export default function Registration(): JSX.Element {
   }, []);
 
   function onFormSubmit(data: userData) {
-    console.log(data);
+    registerUser(data);
+  }
+
+  async function registerUser(data: userData) {
+    try {
+      const response = await fetch(`http://localhost:8000/company`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const json = await response.json();
+      console.log(json);
+
+      //handle errors: account exists
+      //redirect to log in page if request succeeds
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   function checkPasswordRequirements(inputValue: string) {

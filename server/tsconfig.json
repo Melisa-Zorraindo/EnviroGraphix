@@ -6,7 +6,8 @@
     "rootDir": "../server",
     "strict": true,
     "moduleResolution": "node",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "allowJs": true
   },
   "exclude": ["./node_modules"]
 }
