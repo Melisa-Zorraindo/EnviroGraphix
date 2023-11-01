@@ -5,11 +5,11 @@ dotenv.config();
 const port = process.env.DBPORT ? parseInt(process.env.DBPORT, 10) : 5432;
 
 const pool = new Pool({
-  user: process.env.USERNAME,
+  user: process.env.USER,
   password: process.env.PASSWORD,
   host: process.env.HOST,
   port: port,
-  database: "envirographix",
+  database: process.env.DATABASE,
 });
 
 export default pool;
