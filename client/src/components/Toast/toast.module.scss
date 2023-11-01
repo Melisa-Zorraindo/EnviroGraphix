@@ -1,0 +1,43 @@
+@import "../../theme.scss";
+
+.box {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  color: $dark;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  background-color: $danger-fade;
+}
+
+.warning {
+  background-color: $warning-fade;
+}
+
+.success {
+  background-color: $success-fade;
+}
+
+.buttonContainer {
+  text-align: right;
+}
+
+.close {
+  font-size: $font-size-l;
+  border: none;
+  padding: 0;
+  padding-right: 0.5rem;
+  background-color: transparent;
+  color: $dark;
+  cursor: pointer;
+}
+
+.message {
+  padding: 0rem 3rem;
+}

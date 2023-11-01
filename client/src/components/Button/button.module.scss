@@ -9,6 +9,7 @@
   color: $light;
   cursor: pointer;
   transition: all $transition-time-property;
+  border-radius: $border-radius-base;
 
   //when buttons have icons
   display: flex;
