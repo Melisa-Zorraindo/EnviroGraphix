@@ -1,10 +1,11 @@
 /* =~= Theme Properties =~= */
 $header-height: 3rem;
-$border-radius-base: 6px;
+$border-radius-base: 2px;
 
 /* =~= Fonts =~= */
 @import url("https://fonts.googleapis.com/css2?family=Onest:wght@200;400;600;800&display=swap");
 $font-family-base: "Onest", sans-serif;
+$font-size-l: 24px;
 $font-size-m: 20px;
 $font-size-base: 18px;
 $font-size-s: 14px;
@@ -28,12 +29,15 @@ $dark: #000;
 /* neutral | #E6E6E6 */
 $neutral: #e6e6e6;
 $neutral-accent: #c7c7c7;
-/* success | #84CC16 */
+/* success  | #69AA08 */
 $success: #69aa08;
-/* warning | #DBEA08 */
+$success-fade: rgba(105, 170, 8, 0.5);
+/* warnings | #DBEA08 */
 $warning: #dbea08;
-/* error | #C70C25 */
+$warning-fade: rgba(217, 232, 8, 0.5);
+/* errors | #DB0723 */
 $danger: #db0723;
+$danger-fade: rgba(218, 7, 35, 0.5);
 
 /* =~= Transitions =~= */
 $transition-time-property: 0.3s ease-in-out;
