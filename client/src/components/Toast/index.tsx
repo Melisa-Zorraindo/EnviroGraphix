@@ -2,15 +2,19 @@ import styles from "./toast.module.scss";
 import { useEffect, useState } from "react";
 
 interface ToastProps {
+  title?: string;
   message: string;
   type: string;
   onClose: () => void;
+  mode: string;
 }
 
 export default function Toast({
+  title,
   message,
   type,
   onClose,
+  mode,
 }: ToastProps): JSX.Element {
   const [toastTypeClass, setToastTypeClass] = useState<string>("");
 
@@ -29,13 +33,21 @@ export default function Toast({
   }, [type]);
 
   return (
-    <div className={`${styles.box} ${toastTypeClass}`} role="alert">
+    <div
+      className={`${styles.box} ${toastTypeClass} ${
+        mode === "active" && styles.active
+      }`}
+      role="alert"
+    >
       <div className={styles.buttonContainer}>
         <button className={styles.close} onClick={onClose}>
           &times;
         </button>
       </div>
-      <span className={styles.message}>{message}</span>
+      <div className={styles.message}>
+        {title && <span>{title}</span>}
+        <span>{message}</span>
+      </div>
     </div>
   );
 }

@@ -2,12 +2,8 @@
 
 .box {
   position: absolute;
-  top: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
   border-radius: 2px;
   color: $dark;
-  padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
 }
@@ -39,5 +35,31 @@
 }
 
 .message {
-  padding: 0rem 3rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 0.3rem;
+  padding: 0rem 3rem 1rem;
+}
+
+.active {
+  animation: bounce 1s ease forwards;
+}
+
+@keyframes bounce {
+  0% {
+    top: -5rem;
+  }
+  25% {
+    top: 2rem;
+  }
+  40% {
+    top: 1.5rem;
+  }
+  65% {
+    top: 2rem;
+  }
+  100% {
+    top: 2rem;
+  }
 }

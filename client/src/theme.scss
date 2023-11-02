@@ -29,15 +29,15 @@ $dark: #000;
 /* neutral | #E6E6E6 */
 $neutral: #e6e6e6;
 $neutral-accent: #c7c7c7;
-/* success */
+/* success  | #69AA08 */
 $success: #69aa08;
-$success-fade: #9eff75;
-/* warnings */
+$success-fade: rgba(105, 170, 8, 0.5);
+/* warnings | #DBEA08 */
 $warning: #dbea08;
-$warning-fade: #f6ff75;
-/* errors */
+$warning-fade: rgba(217, 232, 8, 0.5);
+/* errors | #DB0723 */
 $danger: #db0723;
-$danger-fade: #ff7e75;
+$danger-fade: rgba(218, 7, 35, 0.5);
 
 /* =~= Transitions =~= */
 $transition-time-property: 0.3s ease-in-out;
