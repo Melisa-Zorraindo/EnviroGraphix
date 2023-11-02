@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import backgroundImg from "../../assets/undraw_mobile_content_xvgr.svg";
 import styles from "./registration.module.scss";
@@ -10,6 +11,7 @@ import Button from "../../components/Button";
 import buttonStyles from "../../components/Button/button.module.scss";
 import { colourBorder } from "../../utils/colourBorder";
 import { narrowScreen, wideScreen } from "../../utils/constants/screenWidth";
+import Toast from "../../components/Toast";
 
 interface userData {
   company: string;
@@ -64,6 +66,12 @@ export default function Registration(): JSX.Element {
     password: false,
     repeatPassword: false,
   });
+  const [feedback, setFeedback] = useState({
+    title: "",
+    message: "",
+    type: "",
+  });
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "EnviroGraphix · Sign up";
@@ -82,10 +90,25 @@ export default function Registration(): JSX.Element {
       });
 
       const json = await response.json();
-      console.log(json);
 
-      //handle errors: account exists
+      if (!response.ok) {
+        setFeedback({
+          title: `Error ${response.status} - ${response.statusText}`,
+          message: json.error,
+          type: "error",
+        });
+        return;
+      }
+
       //redirect to log in page if request succeeds
+      setFeedback({
+        title: "Account created successfully",
+        message: "You'll be redirected to the login page",
+        type: "success",
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
     } catch (err) {
       console.error(err);
     }
@@ -109,10 +132,24 @@ export default function Registration(): JSX.Element {
 
   return (
     <main className={styles.main}>
+      {feedback.message && (
+        <Toast
+          title={feedback.title}
+          message={feedback.message}
+          type={feedback.type}
+          onClose={() => setFeedback({ title: "", message: "", type: "" })}
+          mode={feedback && "active"}
+        />
+      )}
+
       <div className={styles.container}>
         {width >= wideScreen && (
           <div className={styles.backgroundImage}>
-            <img src={backgroundImg} alt="" className={styles.img} />
+            <img
+              src={backgroundImg}
+              alt="A man and a woman signing up from a mobile phone"
+              className={styles.img}
+            />
           </div>
         )}
         <div className={styles.formContainer}>

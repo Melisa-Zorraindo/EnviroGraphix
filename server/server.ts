@@ -11,7 +11,7 @@ const app: Application = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/company", async (req, res) => {
+app.get("/company", async (req: Request, res: Response): Promise<void> => {
   try {
     const company = await pool.query(
       "SELECT email, id, company_name, creation_date FROM company;"
@@ -24,6 +24,12 @@ app.get("/company", async (req, res) => {
 
 app.post("/company", async (req: Request, res: Response): Promise<void> => {
   const { email, company, password } = req.body;
+
+  if (!email || !company || !password) {
+    res.status(400).json({ error: "All fields are required" });
+    return;
+  }
+
   const id = uuidv4();
   const salt = bcrypt.genSaltSync(10);
   const hashed_password = bcrypt.hashSync(password, salt);
@@ -37,9 +43,14 @@ app.post("/company", async (req: Request, res: Response): Promise<void> => {
 
     const token = jwt.sign({ email }, "secret", { expiresIn: "24h" });
 
-    res.json({ email, company, token });
-  } catch (err) {
+    res.status(201).json({ email, company, token });
+  } catch (err: any) {
     console.log(err);
+    if (err.code === "23505") {
+      res.status(409).json({ error: "The company already exists" });
+    } else {
+      res.status(500).json({ error: "Internal Server Error" });
+    }
   }
 });
 
