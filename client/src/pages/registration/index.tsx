@@ -11,6 +11,7 @@ import Button from "../../components/Button";
 import buttonStyles from "../../components/Button/button.module.scss";
 import { colourBorder } from "../../utils/colourBorder";
 import { narrowScreen, wideScreen } from "../../utils/constants/screenWidth";
+import { baseUrl } from "../../utils/constants/apiUrl";
 import Toast from "../../components/Toast";
 
 interface userData {
@@ -83,7 +84,7 @@ export default function Registration(): JSX.Element {
 
   async function registerUser(data: userData) {
     try {
-      const response = await fetch(`http://localhost:8000/company`, {
+      const response = await fetch(`${baseUrl}company`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

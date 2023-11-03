@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import backgroundImg from "../../assets/undraw_authentication_re_svpt.svg";
 import styles from "./login.module.scss";
@@ -10,6 +11,8 @@ import Button from "../../components/Button";
 import buttonStyles from "../../components/Button/button.module.scss";
 import { colourBorder } from "../../utils/colourBorder";
 import { narrowScreen, wideScreen } from "../../utils/constants/screenWidth";
+import { baseUrl } from "../../utils/constants/apiUrl";
+import Toast from "../../components/Toast";
 
 interface userData {
   email: string;
@@ -42,6 +45,12 @@ export default function Registration(): JSX.Element {
     email: false,
     password: false,
   });
+  const [feedback, setFeedback] = useState({
+    title: "",
+    message: "",
+    type: "",
+  });
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "EnviroGraphix · Log in";
@@ -49,10 +58,46 @@ export default function Registration(): JSX.Element {
 
   function onFormSubmit(data: userData) {
     console.log(data);
+    loginUser(data);
+  }
+
+  async function loginUser(data: userData) {
+    try {
+      const response = await fetch(`${baseUrl}login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        setFeedback({
+          title: `Error ${response.status} - ${response.statusText}`,
+          message: json.error,
+          type: "error",
+        });
+        return;
+      }
+
+      //redirect to homepage if request succeeds
+      navigate("/home");
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   return (
     <main className={styles.main}>
+      {feedback.message && (
+        <Toast
+          title={feedback.title}
+          message={feedback.message}
+          type={feedback.type}
+          onClose={() => setFeedback({ title: "", message: "", type: "" })}
+          mode={feedback && "active"}
+        />
+      )}
       <div className={styles.container}>
         {width >= wideScreen && (
           <div className={styles.backgroundImage}>
