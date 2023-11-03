@@ -22,6 +22,7 @@ app.get("/company", async (req: Request, res: Response): Promise<void> => {
   }
 });
 
+//sign up
 app.post("/company", async (req: Request, res: Response): Promise<void> => {
   const { email, company, password } = req.body;
 
@@ -41,9 +42,7 @@ app.post("/company", async (req: Request, res: Response): Promise<void> => {
       [email, id, company, hashed_password, creation_date]
     );
 
-    const token = jwt.sign({ email }, "secret", { expiresIn: "24h" });
-
-    res.status(201).json({ email, company, token });
+    res.status(201).json({ email, company });
   } catch (err: any) {
     console.log(err);
     if (err.code === "23505") {
@@ -51,6 +50,44 @@ app.post("/company", async (req: Request, res: Response): Promise<void> => {
     } else {
       res.status(500).json({ error: "Internal Server Error" });
     }
+  }
+});
+
+//log in
+app.post("/login", async (req: Request, res: Response): Promise<void> => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    res.status(400).json({ error: "All fields are required" });
+    return;
+  }
+
+  try {
+    const response = await pool.query(
+      "SELECT * FROM company WHERE email = $1",
+      [email]
+    );
+
+    if (!response.rows.length) {
+      res.status(404).json({ error: "The user doesn't exist" });
+      return;
+    }
+
+    const passwordComparison = await bcrypt.compare(
+      password,
+      response.rows[0].hashed_password
+    );
+
+    const token = jwt.sign({ email }, "secret", { expiresIn: "24h" });
+
+    if (passwordComparison) {
+      res.status(200).json({ email: response.rows[0].email, token });
+    } else {
+      res.status(403).json({ error: "Password not valid" });
+    }
+  } catch (err: any) {
+    console.log(err);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
