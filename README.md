@@ -1,6 +1,6 @@
 # EnviroGraphix
 
-Welcome to EnviroGraphix! This project aims to foster environmental consciousness and sustainability by helping companies visualise their carbon footprint, and providing tips on how to reduce it.
+Welcome to EnviroGraphix! This project aims to foster environmental consciousness and sustainability by helping companies visualise their carbon footprint and providing tips on how to reduce it.
 
 ## Table of Contents
 
