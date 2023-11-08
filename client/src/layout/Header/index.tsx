@@ -10,6 +10,7 @@ export default function Header(): JSX.Element {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const node = useRef<HTMLDivElement | null>(null);
   useOnClickOutside(node, () => setIsOpen(false));
+  const authToken = localStorage.getItem("enviroToken");
 
   const { pathname } = useLocation();
 
@@ -20,7 +21,7 @@ export default function Header(): JSX.Element {
       </NavLink>
       {!pathname.includes("registration") && !pathname.includes("login") && (
         <div ref={node}>
-          <Burger open={isOpen} setOpen={setIsOpen} />
+          {!authToken && <Burger open={isOpen} setOpen={setIsOpen} />}
           <Navbar open={isOpen} />
         </div>
       )}

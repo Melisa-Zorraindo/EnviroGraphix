@@ -57,7 +57,6 @@ export default function Registration(): JSX.Element {
   }, []);
 
   function onFormSubmit(data: userData) {
-    console.log(data);
     loginUser(data);
   }
 
@@ -80,7 +79,7 @@ export default function Registration(): JSX.Element {
         return;
       }
 
-      //redirect to homepage if request succeeds
+      localStorage.setItem("enviroToken", json.token);
       navigate("/home");
     } catch (err) {
       console.error(err);
