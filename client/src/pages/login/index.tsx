@@ -40,7 +40,7 @@ export default function Registration(): JSX.Element {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const [password, setPassword] = useState<string>("");
+  const [password, setPassword] = useState<string>(""); // eslint-disable-line @typescript-eslint/no-unused-vars
   const [isOnFocus, setIsOnFocus] = useState<{ [key: string]: boolean }>({
     email: false,
     password: false,
