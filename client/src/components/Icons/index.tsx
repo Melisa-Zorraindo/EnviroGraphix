@@ -12,5 +12,5 @@ export * from "./Password";
 export * from "./Settings";
 export * from "./Signup";
 export * from "./Tips";
-export * from "./User";
+export * from "./UserPlaceholder";
 export * from "./YearOverview";
