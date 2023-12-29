@@ -2,6 +2,8 @@ import styles from "./navbar.module.scss";
 import * as Icons from "../../components/Icons";
 import buttonStyles from "../../components/Button/button.module.scss";
 import useWindowWidth from "../../hooks/useWindowWidth";
+import { useAuth } from "../../hooks/useAuth";
+import Avatar from "../../components/Avatar";
 
 interface NavbarProps {
   open: boolean;
@@ -10,8 +12,9 @@ interface NavbarProps {
 export default function Navbar({ open }: NavbarProps): JSX.Element {
   const { Contact, Login, Signup } = Icons;
   const { width } = useWindowWidth();
+  const { loggedInUser } = useAuth();
 
-  return (
+  return loggedInUser.company === "" ? (
     <nav data-open={open}>
       <ul
         className={`${styles.container} ${
@@ -42,6 +45,27 @@ export default function Navbar({ open }: NavbarProps): JSX.Element {
             <Signup />
             SIGN UP
           </a>
+        </li>
+      </ul>
+    </nav>
+  ) : (
+    <nav data-open={open}>
+      <ul
+        className={`${styles.container} ${
+          open ? styles.isOpen : styles.isClosed
+        }`}
+      >
+        <li className={styles.navItem}>
+          <a href="/" className={styles.link}>
+            <Contact />
+            Contact
+          </a>
+        </li>
+        <li className={styles.navItem}>
+          <Avatar
+            picture={loggedInUser.picture}
+            companyName={loggedInUser.company}
+          />
         </li>
       </ul>
     </nav>
