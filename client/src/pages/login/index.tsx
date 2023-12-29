@@ -33,7 +33,7 @@ const schema = yup
   })
   .required();
 
-export default function Registration(): JSX.Element {
+export default function Login(): JSX.Element {
   const { Email, Password } = Icon;
   const { width } = useWindowWidth();
   const {
