@@ -81,7 +81,11 @@ app.post("/login", async (req: Request, res: Response): Promise<void> => {
     const token = jwt.sign({ email }, "secret", { expiresIn: "24h" });
 
     if (passwordComparison) {
-      res.status(200).json({ email: response.rows[0].email, token });
+      res.status(200).json({
+        company_name: response.rows[0].company_name,
+        company_avatar: response.rows[0].picture,
+        token,
+      });
     } else {
       res.status(403).json({ error: "Password not valid" });
     }

@@ -13,6 +13,7 @@ import { colourBorder } from "../../utils/colourBorder";
 import { narrowScreen, wideScreen } from "../../utils/constants/screenWidth";
 import { baseUrl } from "../../utils/constants/apiUrl";
 import Toast from "../../components/Toast";
+import { useAuth } from "../../hooks/useAuth";
 
 interface userData {
   email: string;
@@ -50,6 +51,7 @@ export default function Registration(): JSX.Element {
     message: "",
     type: "",
   });
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -80,6 +82,7 @@ export default function Registration(): JSX.Element {
       }
 
       localStorage.setItem("enviroToken", json.token);
+      login(json.company_name, json.company_avatar);
       navigate("/home");
     } catch (err) {
       console.error(err);
