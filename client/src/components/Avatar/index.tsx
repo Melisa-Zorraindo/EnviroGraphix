@@ -1,4 +1,4 @@
-import { UserPlaceholder } from "../Icons";
+import { Dropdown, UserPlaceholder } from "../Icons";
 import styles from "./avatar.module.scss";
 
 interface AvatarProps {
@@ -14,7 +14,7 @@ export default function Avatar({
     <button className={styles.container}>
       {picture === undefined ? <UserPlaceholder /> : <img></img>}
       <span className={styles.companyName}>{companyName}</span>
-      <span className={styles.caret}>&#9660;</span>
+      <Dropdown />
     </button>
   );
 }
