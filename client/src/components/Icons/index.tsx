@@ -2,6 +2,7 @@
 export * from "./Company";
 export * from "./Compare";
 export * from "./Contact";
+export * from "./Dropdown";
 export * from "./Email";
 export * from "./Goals";
 export * from "./Login";
