@@ -16,7 +16,14 @@
 }
 
 .companyName {
-  text-transform: uppercase;
-  letter-spacing: $letter-spacing-base;
-  margin-left: 0.5rem;
+  display: none;
+}
+
+@media (min-width: 500px) {
+  .companyName {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-base;
+    margin-left: 0.5rem;
+  }
 }
