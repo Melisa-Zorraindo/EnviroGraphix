@@ -12,3 +12,28 @@
     text-decoration: none;
   }
 }
+
+.loggedInMenu {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  padding: $header-height 0;
+  gap: 0.5rem;
+}
+
+.menuOptions {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  font-family: $font-family-base;
+  font-size: 1rem;
+  font-weight: $semi-bold;
+  color: $dark;
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing-base;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

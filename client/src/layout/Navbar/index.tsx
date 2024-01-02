@@ -10,11 +10,12 @@ interface NavbarProps {
 }
 
 export default function Navbar({ open }: NavbarProps): JSX.Element {
-  const { Contact, Login, Signup } = Icons;
+  const { Contact, Login, MenuOptions, Signup } = Icons;
   const { width } = useWindowWidth();
   const { loggedInUser } = useAuth();
+  const authToken = localStorage.getItem("enviroToken");
 
-  return loggedInUser.company === "" ? (
+  return !authToken ? (
     <nav data-open={open}>
       <ul
         className={`${styles.container} ${
@@ -56,12 +57,11 @@ export default function Navbar({ open }: NavbarProps): JSX.Element {
         }`}
       >
         <li className={styles.navItem}>
-          <a href="/" className={styles.link}>
-            <Contact />
-            Contact
-          </a>
+          <button className={styles.menuOptions}>
+            <MenuOptions /> Menu
+          </button>
         </li>
-        <li className={styles.navItem}>
+        <li>
           <Avatar
             picture={loggedInUser.picture}
             companyName={loggedInUser.company}
