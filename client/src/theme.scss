@@ -9,6 +9,7 @@ $font-size-l: 24px;
 $font-size-m: 20px;
 $font-size-base: 18px;
 $font-size-s: 14px;
+$font-size-xs: 10px;
 $letter-spacing-base: 1px;
 $regular: 400;
 $semi-bold: 600;
@@ -41,3 +42,10 @@ $danger-fade: rgba(218, 7, 35, 0.5);
 
 /* =~= Transitions =~= */
 $transition-time-property: 0.3s ease-in-out;
+
+/* =~= Screen breakpoints =~=*/
+$breakpoint-xs: 385px;
+$breakpoint-s: 500px;
+$breakpoint-m: 550px;
+$breakpoint-l: 800px;
+$breakpoint-xl: 1100px;

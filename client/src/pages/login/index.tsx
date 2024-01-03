@@ -13,6 +13,7 @@ import { colourBorder } from "../../utils/colourBorder";
 import { narrowScreen, wideScreen } from "../../utils/constants/screenWidth";
 import { baseUrl } from "../../utils/constants/apiUrl";
 import Toast from "../../components/Toast";
+import { useCookies } from "react-cookie";
 
 interface userData {
   email: string;
@@ -32,7 +33,7 @@ const schema = yup
   })
   .required();
 
-export default function Registration(): JSX.Element {
+export default function Login(): JSX.Element {
   const { Email, Password } = Icon;
   const { width } = useWindowWidth();
   const {
@@ -40,7 +41,7 @@ export default function Registration(): JSX.Element {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const [password, setPassword] = useState<string>("");
+  const [password, setPassword] = useState<string>(""); // eslint-disable-line @typescript-eslint/no-unused-vars
   const [isOnFocus, setIsOnFocus] = useState<{ [key: string]: boolean }>({
     email: false,
     password: false,
@@ -51,13 +52,13 @@ export default function Registration(): JSX.Element {
     type: "",
   });
   const navigate = useNavigate();
+  const [cookie, setCookie, removeCookie] = useCookies(null);
 
   useEffect(() => {
     document.title = "EnviroGraphix · Log in";
   }, []);
 
   function onFormSubmit(data: userData) {
-    console.log(data);
     loginUser(data);
   }
 
@@ -80,7 +81,9 @@ export default function Registration(): JSX.Element {
         return;
       }
 
-      //redirect to homepage if request succeeds
+      setCookie("enviroToken", json.token);
+      setCookie("enviroUser", json.company_name);
+      setCookie("enviroAvatar", json.company_avatar);
       navigate("/home");
     } catch (err) {
       console.error(err);
