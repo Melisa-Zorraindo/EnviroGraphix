@@ -12,7 +12,7 @@ export default function Avatar({
 }: AvatarProps): JSX.Element {
   return (
     <button className={styles.container}>
-      {picture === undefined ? <UserPlaceholder /> : <img></img>}
+      {picture === "undefined" ? <UserPlaceholder /> : <img></img>}
       <span className={styles.companyName}>{companyName}</span>
     </button>
   );

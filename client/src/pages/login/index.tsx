@@ -13,7 +13,7 @@ import { colourBorder } from "../../utils/colourBorder";
 import { narrowScreen, wideScreen } from "../../utils/constants/screenWidth";
 import { baseUrl } from "../../utils/constants/apiUrl";
 import Toast from "../../components/Toast";
-import { useAuth } from "../../hooks/useAuth";
+import { useCookies } from "react-cookie";
 
 interface userData {
   email: string;
@@ -51,8 +51,8 @@ export default function Login(): JSX.Element {
     message: "",
     type: "",
   });
-  const { login } = useAuth();
   const navigate = useNavigate();
+  const [cookie, setCookie, removeCookie] = useCookies(null);
 
   useEffect(() => {
     document.title = "EnviroGraphix · Log in";
@@ -81,8 +81,9 @@ export default function Login(): JSX.Element {
         return;
       }
 
-      localStorage.setItem("enviroToken", json.token);
-      login(json.company_name, json.company_avatar);
+      setCookie("enviroToken", json.token);
+      setCookie("enviroUser", json.company_name);
+      setCookie("enviroAvatar", json.company_avatar);
       navigate("/home");
     } catch (err) {
       console.error(err);

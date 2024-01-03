@@ -8,15 +8,18 @@ import Avatar from "../../components/Avatar";
 import Navbar from "../Navbar";
 import styles from "./header.module.scss";
 import useWindowWidth from "../../hooks/useWindowWidth";
-import { useAuth } from "../../hooks/useAuth";
+import { useCookies } from "react-cookie";
 
 export default function Header(): JSX.Element {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const node = useRef<HTMLDivElement | null>(null);
   useOnClickOutside(node, () => setIsOpen(false));
-  const authToken = localStorage.getItem("enviroToken");
+
   const { width } = useWindowWidth();
-  const { loggedInUser } = useAuth();
+  const [cookie] = useCookies(null);
+  const authToken = cookie.enviroToken;
+  const userName = cookie.enviroUser;
+  const userImage = cookie.enviroAvatar;
 
   const { pathname } = useLocation();
 
@@ -36,10 +39,7 @@ export default function Header(): JSX.Element {
                 </button>
               </li>
               <li>
-                <Avatar
-                  picture={loggedInUser.picture}
-                  companyName={loggedInUser.company}
-                />
+                <Avatar picture={userImage} companyName={userName} />
               </li>
             </ul>
           )}

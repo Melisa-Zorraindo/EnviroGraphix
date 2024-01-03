@@ -2,8 +2,8 @@ import styles from "./navbar.module.scss";
 import * as Icons from "../../components/Icons";
 import buttonStyles from "../../components/Button/button.module.scss";
 import useWindowWidth from "../../hooks/useWindowWidth";
-import { useAuth } from "../../hooks/useAuth";
 import Avatar from "../../components/Avatar";
+import { useCookies } from "react-cookie";
 
 interface NavbarProps {
   open: boolean;
@@ -12,8 +12,10 @@ interface NavbarProps {
 export default function Navbar({ open }: NavbarProps): JSX.Element {
   const { Contact, Login, MenuOptions, Signup } = Icons;
   const { width } = useWindowWidth();
-  const { loggedInUser } = useAuth();
-  const authToken = localStorage.getItem("enviroToken");
+  const [cookie] = useCookies(null);
+  const authToken = cookie.enviroToken;
+  const userName = cookie.enviroUser;
+  const userImage = cookie.enviroAvatar;
 
   return !authToken ? (
     <nav data-open={open}>
@@ -62,10 +64,7 @@ export default function Navbar({ open }: NavbarProps): JSX.Element {
           </button>
         </li>
         <li>
-          <Avatar
-            picture={loggedInUser.picture}
-            companyName={loggedInUser.company}
-          />
+          <Avatar picture={userImage} companyName={userName} />
         </li>
       </ul>
     </nav>
