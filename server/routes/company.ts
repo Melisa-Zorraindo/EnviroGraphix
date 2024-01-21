@@ -93,3 +93,31 @@ companyRoutes.post(
     }
   }
 );
+
+/* DELETE company */
+companyRoutes.delete("/", async (req: Request, res: Response) => {
+  const { email } = req.body;
+
+  if (!email) {
+    res.status(400).json({ error: "Email is required" });
+    return;
+  }
+
+  try {
+    const company = await pool.query("SELECT FROM company WHERE email = $1", [
+      email,
+    ]);
+
+    if (company.rowCount === 0) {
+      res.status(404).json({ error: "The user doesn't exist" });
+    }
+
+    await pool.query("DELETE FROM company WHERE email = $1", [email]);
+
+    res
+      .status(200)
+      .json({ msg: "Company successfully deleted from the database" });
+  } catch (err: any) {
+    console.log(err);
+  }
+});
